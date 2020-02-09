@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, browserHistory, Route, Link } from 'react-router'
+import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 
@@ -25,7 +25,7 @@ const Page = ({ title }) => (
 )
 
 const Home = (props) => (
-  <Page title="Home"/>
+  <Page title="Home_v6"/>
 )
 
 const About = (props) => (
@@ -39,7 +39,7 @@ const Settings = (props) => (
 class App extends Component {
   render() {
     return (
-      <Router history={browserHistory}>
+      <Router>
         <Route path="/" component={Home}/>
         <Route path="/about" component={About}/>
         <Route path="/settings" component={Settings}/>
