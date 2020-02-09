@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AppComponent } from './App';
-// import { WithApp } from './withApp';
-
-// const Application = WithApp(App);
+import { Provider } from 'react-redux'
+import { HomePage } from '@/pages/home-page';
+import { store } from './store';
 
 ReactDOM.render(
-  <AppComponent />,
+  <Provider store={store}>
+    <HomePage />
+  </Provider>,
   document.getElementById('root')
 );
