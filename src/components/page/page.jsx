@@ -13,6 +13,8 @@ export class Page extends React.PureComponent {
       handleCurrentPositionClick,
       currentPosition = {},
       watchPosition = {},
+      wsStopWatch,
+      isWatchDisabled,
     } = this.props;
     const { latitude = '', longitude = '' } = currentPosition;
     const { latitude: wLatitude = '', longitude: wLongitude = '' } = watchPosition;
@@ -29,8 +31,11 @@ export class Page extends React.PureComponent {
         }}>
           Отправить
         </button>
-        <button onClick={handleWatchPositionClick}>
+        <button onClick={handleWatchPositionClick} disabled={isWatchDisabled}>
           Watch positions
+        </button>
+        <button onClick={wsStopWatch}  disabled={!isWatchDisabled}>
+          Stop Watch
         </button>
         <button onClick={handleCurrentPositionClick}>
           Current positions

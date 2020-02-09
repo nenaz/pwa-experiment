@@ -12,6 +12,8 @@ export class HomePage extends React.PureComponent {
         handleCurrentPositionClick={this.props.handleCurrentPositionClick}
         currentPosition={this.props.currentPosition}
         watchPosition={this.props.watchPosition}
+        wsStopWatch={this.props.wsStopWatch}
+        isWatchDisabled={this.props.isWatchDisabled}
       />
     );
   }

@@ -2,21 +2,25 @@ import * as React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { isNil } from 'lodash';
 import { WithApp } from '@/withApp';
 import { HomePage } from './home-page';
-import { wsWatchPosition, wsGetCurrentPosition } from './home-page-actions';
-import { getCurrentPosition, getWatchPosition } from './home-page-selectors';
+import { wsWatchPosition, wsGetCurrentPosition, wsStopWatch } from './home-page-actions';
+import { getCurrentPosition, getWatchPosition, getWatchId } from './home-page-selectors';
 
 export class HomePageComponent extends React.PureComponent {
   handleWatchPositionClick = () => {
-    console.log('this.props', this.props);
     this.props.wsWatchPosition(true, this.props.ws);
   }
 
   handleCurrentPositionClick = () => {
-    console.log('this.props', this.props);
     this.props.wsGetCurrentPosition(this.props.ws);
   }
+
+  get isWatchDisabled() {
+    return !isNil(this.props.watchId);
+  }
+  
   render() {
     return (
       <HomePage
@@ -25,6 +29,8 @@ export class HomePageComponent extends React.PureComponent {
         handleCurrentPositionClick={this.handleCurrentPositionClick}
         currentPosition={this.props.currentPosition}
         watchPosition={this.props.watchPosition}
+        wsStopWatch={this.props.wsStopWatch}
+        isWatchDisabled={this.isWatchDisabled}
       />
     );
   }
@@ -33,11 +39,13 @@ export class HomePageComponent extends React.PureComponent {
 const mapStateToProps = createStructuredSelector({
   currentPosition: getCurrentPosition,
   watchPosition: getWatchPosition,
+  watchId: getWatchId,
 });
 
 const mapDispatchToProps = {
   wsWatchPosition,
   wsGetCurrentPosition,
+  wsStopWatch,
 };
 
 export const HomePageController = compose(

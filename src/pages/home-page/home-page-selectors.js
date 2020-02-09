@@ -13,3 +13,8 @@ export const getWatchPosition = createSelector(
   getPageState,
   (pageState) => get(pageState, 'watchPosition'),
 );
+
+export const getWatchId = createSelector(
+  getPageState,
+  (pageState) => get(pageState, 'wpid'),
+);
