@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { isEmpty } from 'lodash';
 import { Page } from '@/components/page';
+import { Map } from '@/modules/map/map';
 import { PAGE_TITLE } from './home-page-constants';
 import './home-page.scss';
 
@@ -14,7 +16,8 @@ export class HomePage extends React.PureComponent {
       wsStopWatch,
     } = this.props;
     const { latitude = '', longitude = '' } = currentPosition;
-    const { latitude: wLatitude = '', longitude: wLongitude = '' } = watchPosition;
+    const { latitude: wLatitude = 0, longitude: wLongitude = 0 } = watchPosition;
+    console.log('this.props', this.props);
 
     return (
       <Page
@@ -38,6 +41,9 @@ export class HomePage extends React.PureComponent {
         <p>
         {`${wLatitude} ${wLongitude}`}
         </p>
+        { !isEmpty(watchPosition) && (
+          <Map coordinates={watchPosition} {...this.props} />
+        )}
       </Page>
     );
   }
