@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { isEmpty } from 'lodash';
 import { Page } from '@/components/page';
-import { Map } from '@/modules/map/map';
+import { Map } from '@/modules/map';
 import { PAGE_TITLE } from './home-page-constants';
 import './home-page.scss';
 
