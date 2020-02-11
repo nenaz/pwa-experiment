@@ -2,8 +2,12 @@ import io from 'socket.io-client';
 
 class WSConnection {
   wsConnect = () => {
-    // this.socket = io('localhost:3002');
-    this.socket = io('https://agile-everglades-37267.herokuapp.com');
+    const url = process.env.REACT_APP_USER === 'developer'
+      ? 'localhost:3002'
+      : 'https://agile-everglades-37267.herokuapp.com';
+    console.log('process.env', process.env);
+    console.log('url', url);
+    this.socket = io(url);
     this.socket.on('connect', () => {
       console.log('this.socket.connected');
     });

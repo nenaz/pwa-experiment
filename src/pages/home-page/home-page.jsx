@@ -41,6 +41,7 @@ export class HomePage extends React.PureComponent {
         <p>
         {`${wLatitude} ${wLongitude}`}
         </p>
+        {process.env.REACT_APP_USER}
         { !isEmpty(watchPosition) && (
           <Map coordinates={watchPosition} {...this.props} />
         )}
